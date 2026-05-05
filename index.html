@@ -12,13 +12,16 @@
 
     :root {
       --red: #CC0000;
-      --black: #0a0a0a;
-      --white: #fafafa;
-      --zinc-100: #f4f4f5;
+      --red-dark: #a80000;
+      --black: #111111;
+      --white: #ffffff;
+      --bg: #ffffff;
+      --surface: #f7f7f8;
+      --surface-2: #efefef;
       --zinc-200: #e4e4e7;
-      --zinc-400: #a1a1aa;
-      --zinc-600: #52525b;
-      --zinc-800: #27272a;
+      --zinc-400: #71717a;
+      --zinc-500: #52525b;
+      --zinc-700: #3f3f46;
       --zinc-900: #18181b;
       --font-main: 'Plus Jakarta Sans', sans-serif;
       --font-accent: 'Space Grotesk', monospace;
@@ -27,8 +30,8 @@
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
-      color: var(--white);
+      background: var(--bg);
+      color: var(--black);
       font-family: var(--font-main);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -42,34 +45,25 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.25rem 2.5rem;
-      background: rgba(10,10,10,0.85);
+      padding: 1rem 2.5rem;
+      background: rgba(255,255,255,0.92);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      transition: background 0.3s;
+      border-bottom: 1px solid var(--zinc-200);
+      transition: box-shadow 0.3s;
     }
+
+    nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
 
     .nav-logo {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
       text-decoration: none;
     }
 
-    .owl-mark {
-      width: 36px; height: 36px;
-      flex-shrink: 0;
+    .nav-logo img {
+      height: 36px;
+      width: auto;
     }
-
-    .logo-text {
-      font-family: var(--font-accent);
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--white);
-    }
-
-    .logo-text span { color: var(--red); }
 
     .nav-links {
       display: flex;
@@ -81,14 +75,14 @@
       font-family: var(--font-accent);
       font-size: 0.85rem;
       font-weight: 500;
-      color: var(--zinc-400);
+      color: var(--zinc-500);
       text-decoration: none;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
 
-    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover { color: var(--black); }
 
     .nav-cta {
       font-family: var(--font-accent);
@@ -100,10 +94,10 @@
       padding: 0.55rem 1.4rem;
       cursor: pointer;
       letter-spacing: 0.03em;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.2s;
     }
 
-    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+    .nav-cta:hover { background: var(--red-dark); transform: translateY(-1px); }
 
     /* ─── HERO ─── */
     .hero {
@@ -113,30 +107,33 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 8rem 2rem 4rem;
+      padding: 8rem 2rem 5rem;
       position: relative;
       overflow: hidden;
+      background: var(--white);
     }
 
     .hero-grid {
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        linear-gradient(var(--zinc-200) 1px, transparent 1px),
+        linear-gradient(90deg, var(--zinc-200) 1px, transparent 1px);
       background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+      opacity: 0.5;
       pointer-events: none;
     }
 
     .hero-badge {
       font-family: var(--font-accent);
       font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
+      font-weight: 600;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--red);
-      border: 1px solid rgba(204,0,0,0.35);
+      border: 1px solid rgba(204,0,0,0.25);
+      background: rgba(204,0,0,0.04);
       padding: 0.35rem 1rem;
       margin-bottom: 2rem;
       display: inline-block;
@@ -149,18 +146,18 @@
       letter-spacing: -0.03em;
       max-width: 900px;
       margin-bottom: 1.5rem;
+      color: var(--black);
     }
 
     .hero h1 em {
       font-style: normal;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,0.5);
+      color: var(--red);
     }
 
     .hero-sub {
       font-size: clamp(1rem, 2vw, 1.2rem);
       font-weight: 400;
-      color: var(--zinc-400);
+      color: var(--zinc-500);
       max-width: 560px;
       line-height: 1.7;
       margin-bottom: 2.5rem;
@@ -182,31 +179,31 @@
       border: none;
       padding: 0.8rem 2rem;
       cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: background 0.2s, transform 0.2s;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
     }
 
-    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
 
     .btn-ghost {
       font-family: var(--font-accent);
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--zinc-400);
+      color: var(--zinc-700);
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.12);
+      border: 1px solid var(--zinc-200);
       padding: 0.8rem 2rem;
       cursor: pointer;
-      transition: color 0.2s, border-color 0.2s, transform 0.2s;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
     }
 
-    .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.35); transform: translateY(-2px); }
+    .btn-ghost:hover { border-color: var(--zinc-500); color: var(--black); transform: translateY(-2px); }
 
     .hero-divider {
       width: 60px; height: 2px;
@@ -243,10 +240,11 @@
       letter-spacing: -0.025em;
       line-height: 1.15;
       margin-bottom: 1.2rem;
+      color: var(--black);
     }
 
     .section-desc {
-      color: var(--zinc-400);
+      color: var(--zinc-500);
       font-size: 1.05rem;
       line-height: 1.75;
       max-width: 540px;
@@ -255,7 +253,11 @@
     .container { max-width: 1200px; margin: 0 auto; }
 
     /* ─── CAROUSEL ─── */
-    .carousel-section { background: var(--zinc-900); border-top: 1px solid rgba(255,255,255,0.05); }
+    .carousel-section {
+      background: var(--surface);
+      border-top: 1px solid var(--zinc-200);
+      border-bottom: 1px solid var(--zinc-200);
+    }
 
     .carousel-header {
       display: flex;
@@ -277,11 +279,11 @@
     .project-card {
       flex: 0 0 calc(33.333% - 1rem);
       min-width: 300px;
-      background: var(--black);
-      border: 1px solid rgba(255,255,255,0.07);
+      background: var(--white);
+      border: 1px solid var(--zinc-200);
       padding: 2rem;
       cursor: pointer;
-      transition: border-color 0.25s, transform 0.25s;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
       position: relative;
       overflow: hidden;
     }
@@ -298,12 +300,16 @@
     }
 
     .project-card:hover::before { transform: scaleX(1); }
-    .project-card:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-4px); }
+    .project-card:hover {
+      border-color: var(--zinc-200);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
 
     .card-tag {
       font-family: var(--font-accent);
       font-size: 0.7rem;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--red);
@@ -311,15 +317,16 @@
     }
 
     .card-title {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 0.75rem;
+      color: var(--black);
     }
 
     .card-desc {
       font-size: 0.9rem;
-      color: var(--zinc-400);
+      color: var(--zinc-500);
       line-height: 1.65;
       margin-bottom: 1.5rem;
     }
@@ -327,7 +334,7 @@
     .card-arrow {
       font-family: var(--font-accent);
       font-size: 0.8rem;
-      color: var(--zinc-600);
+      color: var(--zinc-400);
       letter-spacing: 0.06em;
       transition: color 0.2s, gap 0.2s;
       display: flex;
@@ -335,7 +342,7 @@
       gap: 0.4rem;
     }
 
-    .project-card:hover .card-arrow { color: var(--white); gap: 0.7rem; }
+    .project-card:hover .card-arrow { color: var(--red); gap: 0.7rem; }
 
     .carousel-controls {
       display: flex;
@@ -345,9 +352,9 @@
 
     .carousel-btn {
       width: 44px; height: 44px;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.12);
-      color: var(--zinc-400);
+      background: var(--white);
+      border: 1px solid var(--zinc-200);
+      color: var(--zinc-500);
       cursor: pointer;
       font-size: 1.1rem;
       transition: all 0.2s;
@@ -359,23 +366,25 @@
     .carousel-btn:hover { background: var(--red); border-color: var(--red); color: var(--white); }
 
     /* ─── SERVICES ─── */
+    .services-section { background: var(--white); }
+
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.06);
+      gap: 1px;
+      background: var(--zinc-200);
+      border: 1px solid var(--zinc-200);
       margin-top: 4rem;
     }
 
     .service-item {
-      background: var(--black);
+      background: var(--white);
       padding: 2.5rem;
       transition: background 0.25s;
       cursor: default;
     }
 
-    .service-item:hover { background: var(--zinc-900); }
+    .service-item:hover { background: var(--surface); }
 
     .service-icon {
       width: 44px; height: 44px;
@@ -384,15 +393,16 @@
     }
 
     .service-name {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       letter-spacing: -0.015em;
       margin-bottom: 0.6rem;
+      color: var(--black);
     }
 
     .service-desc {
       font-size: 0.9rem;
-      color: var(--zinc-400);
+      color: var(--zinc-500);
       line-height: 1.7;
     }
 
@@ -420,7 +430,7 @@
     .stat-label {
       font-size: 0.85rem;
       font-weight: 500;
-      color: rgba(255,255,255,0.7);
+      color: rgba(255,255,255,0.75);
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-top: 0.3rem;
@@ -428,17 +438,17 @@
 
     /* ─── MARQUEE ─── */
     .marquee-section {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid var(--zinc-200);
+      border-bottom: 1px solid var(--zinc-200);
       padding: 1.2rem 0;
       overflow: hidden;
-      background: var(--zinc-900);
+      background: var(--surface);
     }
 
     .marquee-track {
       display: flex;
       gap: 3rem;
-      animation: marquee 20s linear infinite;
+      animation: marquee 24s linear infinite;
       width: max-content;
     }
 
@@ -448,7 +458,7 @@
       font-weight: 500;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--zinc-600);
+      color: var(--zinc-400);
       white-space: nowrap;
       display: flex;
       align-items: center;
@@ -470,6 +480,8 @@
     .cta-section {
       text-align: center;
       padding: 8rem 2rem;
+      background: var(--surface);
+      border-top: 1px solid var(--zinc-200);
       position: relative;
       overflow: hidden;
     }
@@ -478,20 +490,19 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(204,0,0,0.12), transparent);
+      background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(204,0,0,0.06), transparent);
       pointer-events: none;
     }
 
     .cta-section .section-label { justify-content: center; }
-
     .cta-section .section-title { max-width: 700px; margin: 0 auto 1.5rem; }
-
     .cta-section .section-desc { margin: 0 auto 2.5rem; text-align: center; }
 
     /* ─── FOOTER ─── */
     footer {
-      border-top: 1px solid rgba(255,255,255,0.07);
+      border-top: 1px solid var(--zinc-200);
       padding: 3rem 2rem;
+      background: var(--white);
     }
 
     .footer-inner {
@@ -506,7 +517,7 @@
 
     .footer-copy {
       font-size: 0.82rem;
-      color: var(--zinc-600);
+      color: var(--zinc-400);
       font-family: var(--font-accent);
     }
 
@@ -521,12 +532,12 @@
     .footer-links a {
       font-family: var(--font-accent);
       font-size: 0.8rem;
-      color: var(--zinc-600);
+      color: var(--zinc-400);
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .footer-links a:hover { color: var(--white); }
+    .footer-links a:hover { color: var(--black); }
 
     /* ─── SCROLL REVEAL ─── */
     .reveal {
@@ -545,7 +556,6 @@
 
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
-
       .nav-links, .nav-cta { display: none; }
 
       .hamburger {
@@ -561,16 +571,13 @@
       .hamburger span {
         display: block;
         width: 24px; height: 2px;
-        background: var(--white);
+        background: var(--black);
         transition: all 0.3s;
       }
 
       .hero h1 { font-size: 2.5rem; }
-
       .project-card { flex: 0 0 85vw; min-width: 0; }
-
       .carousel-header { flex-direction: column; align-items: flex-start; }
-
       section { padding: 4rem 1.5rem; }
     }
   </style>
@@ -580,25 +587,7 @@
   <!-- NAV -->
   <nav id="navbar">
     <a href="#" class="nav-logo">
-      <svg class="owl-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Owl body -->
-        <ellipse cx="18" cy="22" rx="10" ry="11" fill="#1a1a1a" stroke="#CC0000" stroke-width="1.5"/>
-        <!-- Ears/tufts -->
-        <polygon points="11,13 13,6 15,13" fill="#1a1a1a" stroke="#CC0000" stroke-width="1.2"/>
-        <polygon points="21,13 23,6 25,13" fill="#1a1a1a" stroke="#CC0000" stroke-width="1.2"/>
-        <!-- Eyes -->
-        <circle cx="14" cy="19" r="3.5" fill="#CC0000"/>
-        <circle cx="22" cy="19" r="3.5" fill="#CC0000"/>
-        <circle cx="14" cy="19" r="1.5" fill="#0a0a0a"/>
-        <circle cx="22" cy="19" r="1.5" fill="#0a0a0a"/>
-        <circle cx="14.7" cy="18.3" r="0.6" fill="white"/>
-        <circle cx="22.7" cy="18.3" r="0.6" fill="white"/>
-        <!-- Beak -->
-        <polygon points="16.5,22 19.5,22 18,24.5" fill="#CC0000"/>
-        <!-- Wing lines -->
-        <path d="M9 26 Q12 29 18 30 Q24 29 27 26" stroke="#CC0000" stroke-width="1" fill="none" stroke-linecap="round"/>
-      </svg>
-      <span class="logo-text">noq<span>labs</span></span>
+      <img src="logo.png" alt="noqlabs" />
     </a>
 
     <ul class="nav-links">
@@ -646,7 +635,7 @@
 
   <!-- MARQUEE -->
   <div class="marquee-section">
-    <div class="marquee-track" id="marquee">
+    <div class="marquee-track">
       <span class="marquee-item">Enterprise Architecture</span>
       <span class="marquee-item">Product Engineering</span>
       <span class="marquee-item">AI Workflow Optimization</span>
@@ -746,7 +735,7 @@
   </div>
 
   <!-- SERVICES -->
-  <section id="services">
+  <section class="services-section" id="services">
     <div class="container">
       <div class="reveal">
         <div class="section-label">What We Do</div>
@@ -863,10 +852,7 @@
 
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
-      const nav = document.getElementById('navbar');
-      nav.style.background = window.scrollY > 40
-        ? 'rgba(10,10,10,0.97)'
-        : 'rgba(10,10,10,0.85)';
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
     });
 
     // Carousel
@@ -904,8 +890,8 @@
     // Subtle parallax on hero grid
     const grid = document.querySelector('.hero-grid');
     document.addEventListener('mousemove', (e) => {
-      const x = (e.clientX / window.innerWidth - 0.5) * 12;
-      const y = (e.clientY / window.innerHeight - 0.5) * 12;
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
       grid.style.transform = `translate(${x}px, ${y}px)`;
     });
   </script>
